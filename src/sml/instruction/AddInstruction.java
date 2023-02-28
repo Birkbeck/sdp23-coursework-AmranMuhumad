@@ -7,7 +7,7 @@ import sml.RegisterName;
 // TODO: write a JavaDoc for the class
 
 /**
- * @author
+ * @author Amran
  */
 
 public class AddInstruction extends Instruction {
@@ -31,7 +31,24 @@ public class AddInstruction extends Instruction {
 	}
 
 	@Override
-	public String toString() {
-		return getLabelString() + getOpcode() + " " + result + " " + source;
+	public String toString() { return getLabelString() + getOpcode() + " " + result + " " + source; }
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Addinstruction class) {
+			return Objects.equals(this.label, other.label)
+					&& Objects.equals(this.result, other.result)
+					&& Objects.equals(this.source, other.source)
+					&& this.OP_CODE == other.OP_CODE;
+		}
+		return false;
 	}
+
+	@Override
+	public int hashCode() { return Objects.hash(label, result, source, OP_CODE); }
+
 }
+
+
+
