@@ -16,7 +16,7 @@ public class Movinstruction extends Instruction {
     private final RegisterName result;
 
     private int value = 0;
-    public static final String OP_CODE = "Mov";
+    public static final String OP_CODE = "mov";
 
     public Movinstruction(String label, RegisterName result, int source) {
         super(label, OP_CODE);

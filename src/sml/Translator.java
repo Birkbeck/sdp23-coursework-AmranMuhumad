@@ -116,8 +116,6 @@ public final class Translator {
 
 
 
-
-
             // TODO: Then, replace the switch by using the Reflection API
 
 

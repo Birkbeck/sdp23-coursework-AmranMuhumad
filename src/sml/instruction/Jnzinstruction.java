@@ -3,7 +3,6 @@ package sml.instruction;
 import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
-import sml.Registers;
 
 import java.util.Objects;
 
@@ -17,12 +16,12 @@ public class Jnzinstruction extends Instruction {
         private RegisterName result;
         private String jmpLabel;
 
-        public static final String OP_CODE = "Jnz";
+        public static final String OP_CODE = "jnz";
 
     public Jnzinstruction(String label, RegisterName result, String jmpLabel) {
         super(label, OP_CODE);
         this.result = result;
-        this.jmpLabel = jmpLabel;
+        this.jmpLabel = String.valueOf(jmpLabel);
     }
     @Override
     public int execute (Machine machine) {
