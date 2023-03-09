@@ -245,22 +245,26 @@ class JnzinstructionTest {
   }
 
   @Test
-  void executeValid() {
+  void executeJNZ() {
     registers.set(EAX, 13);
-    registers.set(EBX, 5);
-    Instruction instruction = new Jnzinstruction(null, EAX, EBX);
-    instruction.execute(machine);
-    Assertions.assertEquals(18, machine.getRegisters().get(EAX));
+    machine.getLabels().addLabel("EBX", 5);
+    Instruction instruction = new Jnzinstruction(null, EAX, "EBX");
+    Assertions.assertEquals(18, instruction.execute(machine));
   }
 
   @Test
-  void executeValidTwo() {
+  void executeJNZero() {
     registers.set(EAX, -13);
-    registers.set(EBX, 5);
-    Instruction instruction = new Jnzinstruction(null, EAX, EBX);
-    instruction.execute(machine);
-    Assertions.assertEquals(-8, machine.getRegisters().get(EAX));
+    machine.getLabels().addLabel("EBX", 5);
+    Instruction instruction = new Jnzinstruction(null, EAX, "EBX");
+    Assertions.assertEquals(-8, instruction.execute(machine));
   }
 }
+
+
+
+
+
+
 
 
