@@ -1,10 +1,9 @@
 package sml;
 
-// TODO: write a JavaDoc for the class
 
 /**
- * Represents an abstract instruction.
- *
+ *A foundation for specifying various instructions in SML is provided by the Instruction class.
+
  * @author  Amran...
  */
 public abstract class Instruction {
@@ -15,7 +14,7 @@ public abstract class Instruction {
 	 * Constructor: an instruction with a label and an opcode
 	 * (opcode must be an operation of the language)
 	 *
-	 * @param label optional label (can be null)
+	 * @param label  optional label (can be null)
 	 * @param opcode operation name
 	 */
 	public Instruction(String label, String opcode) {
@@ -38,8 +37,8 @@ public abstract class Instruction {
 	 *
 	 * @param machine the machine the instruction runs on
 	 * @return the new program counter (for jump instructions)
-	 *          or NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
-	 *          the instruction with the next address is to be executed
+	 * or NORMAL_PROGRAM_COUNTER_UPDATE to indicate that
+	 * the instruction with the next address is to be executed
 	 */
 
 	public abstract int execute(Machine machine);
@@ -48,9 +47,17 @@ public abstract class Instruction {
 		return (getLabel() == null) ? "" : getLabel() + ": ";
 	}
 
-	// TODO: What does abstract in the declaration below mean?
-	//       (Write a short explanation.)
+	// It is abstract.
+	//       Two abstract methods are needed.
 	@Override
 	public abstract String toString();
 
-	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
+
+	@Override
+	   public abstract boolean
+	equals(Object o);
+
+	@Override
+	public abstract int hashCode();
+
+}

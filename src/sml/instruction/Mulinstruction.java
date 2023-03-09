@@ -7,17 +7,18 @@ import sml.RegisterName;
 import java.util.Objects;
 
 /**
- * A class that allows for the subtraction of register values.
+ * Executing multiple instructions.
+
  * @author Amran
  */
 
-public class Subinstruction extends Instruction {
+public class Mulinstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
 
-    public static final String OP_CODE = "sub";
+    public static final String OP_CODE = "mul";
 
-    public Subinstruction(String label, RegisterName result, RegisterName source) {
+    public Mulinstruction(String label, RegisterName result, RegisterName source) {
         super(label, OP_CODE);
         this.result = result;
         this.source = source;
@@ -27,7 +28,7 @@ public class Subinstruction extends Instruction {
     public int execute(Machine m) {
         int value1 = m.getRegisters().get(result);
         int value2 = m.getRegisters().get(source);
-        m.getRegisters().set(result, value1 - value2);
+        m.getRegisters().set(result, value1 * value2);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
 
@@ -37,7 +38,7 @@ public class Subinstruction extends Instruction {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Subinstruction other) {
+        if (o instanceof Mulinstruction other) {
             return Objects.equals(this.label, other.label)
                     && Objects.equals(this.result, other.result)
                     && Objects.equals(this.source, other.source)
@@ -45,7 +46,6 @@ public class Subinstruction extends Instruction {
         }
         return false;
     }
-
 
     @Override
     public int hashCode() { return Objects.hash(label, result, source, OP_CODE); }

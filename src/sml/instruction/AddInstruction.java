@@ -4,9 +4,11 @@ import sml.Instruction;
 import sml.Machine;
 import sml.RegisterName;
 
-// TODO: write a JavaDoc for the class
+import java.util.Objects;
 
 /**
+ * Adds the value of a source register and stores the outcome in the register.
+
  * @author Amran
  */
 
@@ -36,7 +38,7 @@ public class AddInstruction extends Instruction {
 
 	@Override
 	public boolean equals(Object o) {
-		if (o instanceof Addinstruction class) {
+		if (o instanceof AddInstruction other) {
 			return Objects.equals(this.label, other.label)
 					&& Objects.equals(this.result, other.result)
 					&& Objects.equals(this.source, other.source)

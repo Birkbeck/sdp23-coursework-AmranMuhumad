@@ -4,6 +4,8 @@ import sml.instruction.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Scanner;
@@ -11,11 +13,12 @@ import java.util.Scanner;
 import static sml.Registers.Register;
 
 /**
- * This class ....
+ * This class is a Java class named Translator that converts SML code into a list of SML commands.
+ * Provides a function Object() { [native code] } that accepts a file name and a readAndTranslate method that accepts two inputs: a Labels object and a ListInstruction> object.
  * <p>
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  *
- * @author ...
+ * @author .Amran..
  */
 public final class Translator {
 
@@ -75,12 +78,86 @@ public final class Translator {
 
             // TODO: add code for all other types of instructions
 
+            case Divinstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new Divinstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+
+            case Subinstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new Subinstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+
+            case Mulinstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new Mulinstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+
+            case Movinstruction.OP_CODE -> {
+                String r = scan();
+                int val = Integer.parseInt(scan());
+                return new Movinstruction(label, Register.valueOf(r), val);
+            }
+
+            case Jnzinstruction.OP_CODE -> {
+                String r = scan();
+                String val = String.valueOf(Integer.parseInt(scan()));
+                return new Jnzinstruction(label, Register.valueOf(r), val);
+            }
+
+            case Outinstruction.OP_CODE -> {
+                String r = scan();
+                String val = String.valueOf(Integer.parseInt(scan()));
+                return new Outinstruction(label, Register.valueOf(r));
+            }
+
+
+
+
+
             // TODO: Then, replace the switch by using the Reflection API
+
+
+
+
+
+
 
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
 
-            default -> {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    default -> {
                 System.out.println("Unknown instruction: " + opcode);
             }
         }
