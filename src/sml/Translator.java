@@ -73,29 +73,8 @@ public final class Translator {
 
 
         // TODO: Then, replace the switch by using the Reflection API
-
-        String className = "sml.instruction." + opcode.substring(0, 1).toUpperCase() + opcode.substring(1) + "Instruction";
-        System.out.println("class name " + className);
-        try {
-            Class<?> c = Class.forName(className);
-            Constructor<?> ins = c.getConstructors()[0];
-            Parameter[] paramType = ins.getParameters();
-            List<Object> objList = new LinkedList<>();
-            objList.add(label);
-            for (int i = 1; i < paramType.length; i++) {
-                String r = scan();
-                if (paramType[i].getType().getName().equals("sml.RegisterName")) {
-                    objList.add(Register.valueOf(r));
-                } else if (paramType[i].getType().getName().equals("int")) {
-                    objList.add(Integer.parseInt(r));
-                } else {
-                    objList.add(r);
-                }
-            }
-            return (Instruction) ins.newInstance(objList.toArray());
-        } catch (Exception e) {
-        }
-        return null;
+        final InstructionFactory insFact = null;
+        return insFact.creatIns(label, opcode, this::scan);
     }
 
             // TODO: Next, use dependency injection to allow this machine class
