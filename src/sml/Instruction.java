@@ -1,10 +1,12 @@
 package sml;
 
+// TODO: write a JavaDoc for the class
 
 /**
+ * Representation of Instruction class.
  *A foundation for specifying various instructions in SML is provided by the Instruction class.
 
- * @author  Amran...
+ * @author  Amran Muhumad
  */
 public abstract class Instruction {
 	protected final String label;
@@ -47,12 +49,14 @@ public abstract class Instruction {
 		return (getLabel() == null) ? "" : getLabel() + ": ";
 	}
 
+	// TODO: What does abstract in the declaration below mean?
+	//       (Write a short explanation.)
 	// It is abstract.
 	//       Two abstract methods are needed.
 	@Override
 	public abstract String toString();
 
-
+	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
 	@Override
 	   public abstract boolean
 	equals(Object o);

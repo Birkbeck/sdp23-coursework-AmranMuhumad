@@ -19,7 +19,7 @@ import static sml.Registers.Register;
  * <p>
  * The translator of a <b>S</b><b>M</b>al<b>L</b> program.
  *
- * @author .Amran..
+ * @author Amran Muhumad
  */
 public final class Translator {
 
@@ -79,8 +79,6 @@ public final class Translator {
 
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
-
-
 
     private String getLabel() {
         String word = scan();

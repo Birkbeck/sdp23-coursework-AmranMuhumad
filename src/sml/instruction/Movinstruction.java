@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * Move instruction class representation.
  * After moving and storing value into the register, the move instruction class will be produced.
- * @author Amran
+ * @author Amran Muhumad
  */
 public class Movinstruction extends Instruction {
     private final RegisterName result;

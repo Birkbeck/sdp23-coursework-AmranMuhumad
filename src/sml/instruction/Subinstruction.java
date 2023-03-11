@@ -7,8 +7,9 @@ import sml.RegisterName;
 import java.util.Objects;
 
 /**
+ * Representation for Subtraction class.
  * A class that allows for the subtraction of register values.
- * @author Amran
+ * @author Amran Muhumad
  */
 
 public class Subinstruction extends Instruction {
@@ -51,6 +52,3 @@ public class Subinstruction extends Instruction {
     public int hashCode() { return Objects.hash(label, result, source, OP_CODE); }
 
 }
-
-
-

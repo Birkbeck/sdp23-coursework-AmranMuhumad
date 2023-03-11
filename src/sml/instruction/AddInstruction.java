@@ -6,10 +6,13 @@ import sml.RegisterName;
 
 import java.util.Objects;
 
+// TODO: write a JavaDoc for the class
+
 /**
+ * Representation of AddInstruction class.
  * Adds the value of a source register and stores the outcome in the register.
 
- * @author Amran
+ * @author Amran Muhumad
  */
 
 public class AddInstruction extends Instruction {
@@ -51,6 +54,3 @@ public class AddInstruction extends Instruction {
 	public int hashCode() { return Objects.hash(label, result, source, OP_CODE); }
 
 }
-
-
-

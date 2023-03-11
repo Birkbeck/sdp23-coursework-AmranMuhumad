@@ -3,10 +3,13 @@ package sml;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// TODO: write a JavaDoc for the class
+
 /**
+ * Representation of Registers class.
  * The Registers class represents a collection of manipulable processor registers.
 
- * @author ...Amran
+ * @author Amran Muhumad
  */
 public final class Registers {
     private final Map<Register, Integer> registers = new HashMap<>();
@@ -44,6 +47,7 @@ public final class Registers {
         return registers.get((Register)register);
     }
 
+    // TODO: use pattern matching for instanceof
     // https://docs.oracle.com/en/java/javase/14/language/pattern-matching-instanceof-operator.html
     @Override
     public boolean equals(Object o) {

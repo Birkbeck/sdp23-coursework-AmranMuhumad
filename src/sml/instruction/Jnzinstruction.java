@@ -7,9 +7,10 @@ import sml.RegisterName;
 import java.util.Objects;
 
 /**
+ * Representation of Jnz instruction class.
  *  Jnz instruction class representation.
  *  If the register's contents are not zero, the Jnz instruction will transfer control to the location given in label.
- * @author Amran
+ * @author Amran Muhumad
  */
 public class Jnzinstruction extends Instruction {
 

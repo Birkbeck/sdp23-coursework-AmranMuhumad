@@ -8,9 +8,9 @@ import java.util.Objects;
 
 
 /**
- * Out instruction class representation.
+ * Output instruction class representation.
  * The outcome of this class will be printing content register on console.
- * @author Amran
+ * @author Amran Muhumad
  */
 
 public class Outinstruction extends Instruction {

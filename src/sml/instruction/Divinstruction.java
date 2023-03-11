@@ -7,9 +7,10 @@ import sml.RegisterName;
 import java.util.Objects;
 
 /**
+ * Representation of Division instruction class.
  * A class that allows for the division of register values by one another.
 
- * @author Amran
+ * @author Amran Muhumad
  */
 
 public class Divinstruction extends Instruction {
@@ -49,8 +50,4 @@ public class Divinstruction extends Instruction {
 
     @Override
     public int hashCode() { return Objects.hash(label, result, source, OP_CODE); }
-
 }
-
-
-

@@ -3,10 +3,13 @@ package sml;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// TODO: write a JavaDoc for the class
+
 /**
+ * Representation of labels class.
  *This class offers operations to add labels and addresses, get addresses from labels, and clear the collection.
 
- * @author ...Amran
+ * @author Amran Muhumad
  */
 public final class Labels {
 	private final Map<String, Integer> labels = new HashMap<>();
@@ -32,6 +35,9 @@ public final class Labels {
 	 * @return the address the label refers to
 	 */
 	public int getAddress(String label) {
+		// TODO: Where can NullPointerException be thrown here?
+		//       (Write an explanation.)
+		//       Add code to deal with non-existent labels.
 		// If the label parameter supplied to getAddress is null, a NullPointerException may be thrown.
 		// The method should have a check for this added at the start, and we should then throw an exception.
 		if (labels.get(label) == null) {
@@ -48,15 +54,15 @@ public final class Labels {
 	 */
 	@Override
 	public String toString() {
+		// TODO: Implement the method using the Stream API (see also class Registers).
 		return labels.entrySet().stream()
 				.sorted(Map.Entry.comparingByKey())
 				.map(e -> e.getKey() + " = " + e.getValue())
 				.collect(Collectors.joining(", ", "[", "]"));
 	}
 
-	/**
-	 * Removes the labels
-	 */
+	 // TODO: Implement equals and hashCode (needed in class Machine).
+
 	@Override
 	public boolean equals(Object o) {
 		if (o instanceof Labels other) {
@@ -66,7 +72,12 @@ public final class Labels {
 	}
 
 	@Override
-	public int hashCode() { return Objects.hash(labels); }
+	public int hashCode() { return Objects.hash(labels);
+	}
+
+	/**
+	 * Removes the labels
+	 */
 	public void reset() {
 		labels.clear();
 	}

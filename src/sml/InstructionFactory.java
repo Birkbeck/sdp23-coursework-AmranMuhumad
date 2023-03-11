@@ -5,6 +5,11 @@ import java.lang.reflect.Parameter;
 import java.util.*;
 import java.util.function.Supplier;
 
+/**
+ * Representation of Instruction Factory class.
+ * The task of constructing and configuring necessary type objects is carried out by the InstructionFactory class.
+ */
+
 public class InstructionFactory {
     public Instruction creatIns(String opcode, String label, Supplier<String> s) {
         String className = "sml.instruction." + opcode.substring(0, 1).toUpperCase() + opcode.substring(1) + "Instruction";

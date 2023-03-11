@@ -7,9 +7,10 @@ import sml.RegisterName;
 import java.util.Objects;
 
 /**
+ * Representation of Multiplication class.
  * Executing multiple instructions.
 
- * @author Amran
+ * @author Amran Muhumad
  */
 
 public class Mulinstruction extends Instruction {
@@ -51,6 +52,3 @@ public class Mulinstruction extends Instruction {
     public int hashCode() { return Objects.hash(label, result, source, OP_CODE); }
 
 }
-
-
-
