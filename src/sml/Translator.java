@@ -6,9 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static sml.Registers.Register;
 
@@ -69,100 +70,37 @@ public final class Translator {
             return null;
 
         String opcode = scan();
-        switch (opcode) {
-            case AddInstruction.OP_CODE -> {
+
+
+        // TODO: Then, replace the switch by using the Reflection API
+
+        String className = "sml.instruction." + opcode.substring(0, 1).toUpperCase() + opcode.substring(1) + "Instruction";
+        System.out.println("class name " + className);
+        try {
+            Class<?> c = Class.forName(className);
+            Constructor<?> ins = c.getConstructors()[0];
+            Parameter[] paramType = ins.getParameters();
+            List<Object> objList = new LinkedList<>();
+            objList.add(label);
+            for (int i = 1; i < paramType.length; i++) {
                 String r = scan();
-                String s = scan();
-                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
+                if (paramType[i].getType().getName().equals("sml.RegisterName")) {
+                    objList.add(Register.valueOf(r));
+                } else if (paramType[i].getType().getName().equals("int")) {
+                    objList.add(Integer.parseInt(r));
+                } else {
+                    objList.add(r);
+                }
             }
-
-            // TODO: add code for all other types of instructions
-
-            case Divinstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new Divinstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-
-            case Subinstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new Subinstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-
-            case Mulinstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new Mulinstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-
-            case Movinstruction.OP_CODE -> {
-                String r = scan();
-                int val = Integer.parseInt(scan());
-                return new Movinstruction(label, Register.valueOf(r), val);
-            }
-
-            case Jnzinstruction.OP_CODE -> {
-                String r = scan();
-                String val = String.valueOf(Integer.parseInt(scan()));
-                return new Jnzinstruction(label, Register.valueOf(r), val);
-            }
-
-            case Outinstruction.OP_CODE -> {
-                String r = scan();
-                String val = String.valueOf(Integer.parseInt(scan()));
-                return new Outinstruction(label, Register.valueOf(r));
-            }
-
-
-
-            // TODO: Then, replace the switch by using the Reflection API
-
-
-
-
-
-
-
-
+            return (Instruction) ins.newInstance(objList.toArray());
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    default -> {
-                System.out.println("Unknown instruction: " + opcode);
-            }
-        }
-        return null;
-    }
 
 
     private String getLabel() {
